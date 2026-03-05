@@ -8,6 +8,7 @@ const gameBoard = (function() {
             markerSlots[index] = marker;
         } else {
             console.log("Spot taken. Please choose another one.")
+            return false;
         }
     };
 
@@ -53,10 +54,11 @@ const gameController = (function () {
 
     const playRound = (index) => {
         const currentPlayer = getActivePlayer();
+        const validMove = gameBoard.dropMarker(index, currentPlayer.marker);
 
-        gameBoard.dropMarker(index, currentPlayer.marker);
-
-        switchPlayerTurn();
+        if (validMove) {
+            switchPlayerTurn();
+        }
 
         console.log(gameBoard.getBoard());
     };
