@@ -3,9 +3,11 @@ const gameBoard = (function() {
     const markerSlots = Array(9).fill("");
 
     const getBoard = () => markerSlots;
+
     const dropMarker = (index, marker) => {
         if (markerSlots[index] === "") {
             markerSlots[index] = marker;
+            return true;
         } else {
             console.log("Spot taken. Please choose another one.")
             return false;
