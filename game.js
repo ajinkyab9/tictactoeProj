@@ -29,7 +29,7 @@ const gameController = (function () {
 
     const players = [
     createPlayer("Player One", "X"),
-    createPlayer("Player Two", "Y")
+    createPlayer("Player Two", "O")
     ];
 
     let activePlayer = players[0];
@@ -44,9 +44,27 @@ const gameController = (function () {
 
     const getActivePlayer = () => activePlayer;
 
+    /*const playGame = (function () {
+        let currentPlayer = getActivePlayer();
+        if (currentPlayer === players[0]) {
+            gameBoard.dropMarker(markerSlots.index())
+        }
+    });*/
+
+    const playRound = (index) => {
+        const currentPlayer = getActivePlayer();
+
+        gameBoard.dropMarker(index, currentPlayer.marker);
+
+        switchPlayerTurn();
+
+        console.log(gameBoard.getBoard());
+    };
+
     return {
         switchPlayerTurn,
-        getActivePlayer
+        getActivePlayer,
+        playRound
     }
 
 })();
