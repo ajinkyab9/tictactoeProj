@@ -47,20 +47,35 @@ const gameController = (function () {
 
     const getActivePlayer = () => activePlayer;
 
-    /*const playGame = (function () {
-        let currentPlayer = getActivePlayer();
-        if (currentPlayer === players[0]) {
-            gameBoard.dropMarker(markerSlots.index())
+    //check win
+    const checkWin = (index) => {
+         const board = gameBoard.getBoard();
+            
+         const checkRowMarkerPos = Math.floor(index / 3);//for getting a round off down to the nearest integer
+         const checkColMarkerPos = index % 3;//for getting a round off down to the nearest integer
+         
+         //Check the row
+         const rowStart = checkRowMarkerPos * 3;
+
+         if(board[rowStart] !== "" && board[rowStart] === board[rowStart + 1] && board[rowStart + 1] === board[rowStart + 2]){
+            return true;
+         } 
+         return false;
         }
-    });*/
+    //check win
 
     const playRound = (index) => {
         const currentPlayer = getActivePlayer();
         const validMove = gameBoard.dropMarker(index, currentPlayer.marker);
 
         if (validMove) {
-            switchPlayerTurn();
+            if(checkWin(index)) {
+                console.log(`${currentPlayer.name} Wins!`);
+                console.log(gameBoard.getBoard());
+            }
+                    switchPlayerTurn();
         }
+
 
         console.log(gameBoard.getBoard());
     };
