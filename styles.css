@@ -1,5 +1,71 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainNav {
+    padding: 2rem;
+    background-color: rgb(210, 230, 248);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.navTitle {
+    padding: 1.75rem;
+    font-size: 2.5rem;
+    background-color: rgb(241, 236, 228);
+    box-shadow: rgb(141, 141, 123) 0px 20px 30px -10px;
+    border-radius: 1rem;
+}
+
+.playResetBtn {
+    padding: 1.5rem;
+    font-size: 1.75rem;
+    background-color: rgb(241, 236, 228);
+    box-shadow: rgb(141, 141, 123) 0px 20px 30px -10px;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.mainGameBody {
+    margin-top: 10rem;
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.playerOneDetails {
+    display: flex;
+    flex-direction: column;
+}
+
+.playerTwoDetails {
+    display: flex;
+    flex-direction: column;
+}
+
+.mainGameGrid {
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1rem;
+
+}
+
+.cell {
+    height: 7.5rem;
+    width: 7.5rem;
+    background-color: rgb(243, 245, 166);
+    transition: background-color 0.25s ease;
+    
+}
+
+.cell:hover {
+    cursor: pointer;
+    background-color: rgb(123, 124, 86);
 }
