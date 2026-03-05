@@ -53,15 +53,31 @@ const gameController = (function () {
             
          const checkRowMarkerPos = Math.floor(index / 3);//for getting a round off down to the nearest integer
          const checkColMarkerPos = index % 3;//for getting a round off down to the nearest integer
-         
          //Check the row
          const rowStart = checkRowMarkerPos * 3;
 
-         if(board[rowStart] !== "" && board[rowStart] === board[rowStart + 1] && board[rowStart + 1] === board[rowStart + 2]){
+         if(board[rowStart] !== "" && 
+            board[rowStart] === board[rowStart + 1] && 
+            board[rowStart + 1] === board[rowStart + 2]){
             return true;
-         } 
+         } else if (board[checkColMarkerPos] !== "" && 
+            board[checkColMarkerPos] === board[checkColMarkerPos + 3] && 
+            board[checkColMarkerPos + 3] === board[checkColMarkerPos + 6]){
+            return true;
+         } else if (board[0] !== "" &&
+            board[0] === board[4] &&
+            board[4] === board[8]){
+            return true;
+         } else if (board[2] !== "" && 
+            board[2] === board[4] &&
+            board[4] === board[6]) {
+                return true;
+            } 
          return false;
         }
+
+        //check the column
+
     //check win
 
     const playRound = (index) => {
@@ -72,8 +88,17 @@ const gameController = (function () {
             if(checkWin(index)) {
                 console.log(`${currentPlayer.name} Wins!`);
                 console.log(gameBoard.getBoard());
+                return
             }
-                    switchPlayerTurn();
+
+            const currentBoard = gameBoard.getBoard();
+            if (!currentBoard.includes("")) {
+                console.log("It's a Draw!");
+                console.log(gameBoard.getBoard());
+                return;
+            }
+
+            switchPlayerTurn();
         }
 
 
