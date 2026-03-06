@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
 }
 
 .mainNav {
@@ -70,8 +71,9 @@
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    width: 15rem;
-    height: 10rem;
+    gap: 1rem;
+    width: 17.5rem;
+    height: 15rem;
     border-radius: 30px;
     background: rgb(208, 212, 253);
     box-shadow: 15px 15px 30px rgb(208, 212, 253),
@@ -98,3 +100,21 @@
     background-color: rgb(123, 124, 86);
 }
 
+.inputStl {
+  border: 2px solid transparent;
+  width: 15em;
+  height: 2.5em;
+  padding-left: 0.8em;
+  outline: none;
+  overflow: hidden;
+  background-color: #F3F3F3;
+  border-radius: 10px;
+  transition: all 0.5s;
+}
+
+.inputStl:hover,
+.inputStl:focus {
+  border: 2px solid #4A9DEC;
+  box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 20%);
+  background-color: white;
+}
