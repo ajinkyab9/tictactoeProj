@@ -10,16 +10,16 @@
 
 <body>
     <nav class="mainNav">
-        <div class="playResetBtn">Play</div>
+        <div class="playResetBtn playBtn">Play</div>
         <div class="navTitle">TIC TAC TOE</div>
-        <div class="playResetBtn">Reset</div>
+        <div class="playResetBtn resetBtn">Reset</div>
     </nav>
     <div class="mainGameBody">
-        <div class="playerOneDetails">
+        <div class="detailCard playerOneDetails">
             <label for="nameOne">Player One Name</label>
-            <input type="text" name="nameOne" id="nameOne" required>
+            <input type="text" name="nameOne" id="nameOne" maxlength="1" required>
             <label for="playerOneMarker">Enter your marker (eg. X)</label>
-            <input type="text" name="playerOneMarker" id="playerOneMarker" required>
+            <input type="text" name="playerOneMarker" id="playerOneMarker" maxlength="1" required>
         </div>
         <div class="mainGameGrid">
             <div class="cell" data-index="0"></div>
@@ -32,11 +32,11 @@
             <div class="cell" data-index="7"></div>
             <div class="cell" data-index="8"></div>
         </div>
-        <div class="playerTwoDetails">
+        <div class="detailCard playerTwoDetails">
             <label for="nameTwo">Player Two Name</label>
-            <input type="text" name="nameTwo" id="nameTwo" required>
+            <input type="text" name="nameTwo" id="nameTwo" maxlength="1" required>
             <label for="playerTwoMarker">Enter your marker (eg. O)</label>
-            <input type="text" name="playerTwoMarker" id="playerTwoMarker" required>
+            <input type="text" name="playerTwoMarker" id="playerTwoMarker" maxlength="1" required>
         </div>
     </div>
     <script src="game.js"></script>
