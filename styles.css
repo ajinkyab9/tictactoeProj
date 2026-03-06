@@ -30,6 +30,34 @@
     cursor: pointer;
 }
 
+.playBtn:hover {
+    color: white;
+    background-color: rgb(166, 182, 92);
+    box-shadow:
+        0 0 5px rgba(166, 182, 92, 0.5),
+        0 0 15px rgba(166, 182, 92, 0.7),
+        0 0 30px rgba(166, 182, 92, 0.4);
+}
+
+.resetBtn:hover {
+    color: white;
+    background-color: rgb(182, 92, 92);
+    box-shadow:
+        0 0 5px rgba(182, 92, 92, 0.5),
+        0 0 15px rgba(182, 92, 92, 0.7),
+        0 0 30px rgba(182, 92, 92, 0.4);
+}
+
+.playResetBtn:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.playBtn,
+.resetBtn:hover {
+    transition: 0.15s ease;
+}
+
 .mainGameBody {
     margin-top: 10rem;
     width: 100vw;
@@ -38,23 +66,23 @@
 }
 
 
-.playerOneDetails {
+.detailCard {
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
-}
-
-.playerTwoDetails {
-    display: flex;
-    flex-direction: column;
+    width: 15rem;
+    height: 10rem;
+    border-radius: 30px;
+    background: rgb(208, 212, 253);
+    box-shadow: 15px 15px 30px rgb(208, 212, 253),
+        -15px -15px 30px #ffffff;
 }
 
 .mainGameGrid {
-
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 1rem;
-
 }
 
 .cell {
@@ -62,10 +90,11 @@
     width: 7.5rem;
     background-color: rgb(243, 245, 166);
     transition: background-color 0.25s ease;
-    
+    border-radius: 1rem;
 }
 
 .cell:hover {
     cursor: pointer;
     background-color: rgb(123, 124, 86);
 }
+
