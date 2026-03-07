@@ -111,12 +111,20 @@ const gameController = (function () {
         playRound
     }
 
+
+
+})();
+
     //Control the game grid
     const screenController = (function() {
         const markerCells = document.querySelectorAll('.cell');
 
         const updateMarkerCells = () => {
             const board = gameBoard.getBoard();
+
+            markerCells.forEach((cell, index) => {
+                cell.textContent = board[index];
+            });
         };
 
         const clickHandlerBoard = (e) => {
@@ -124,9 +132,15 @@ const gameController = (function () {
 
             if (!selectedIndex) return;
 
-            updateScreen();
+            gameController.playRound(selectedIndex);
+            updateMarkerCells();
+
+  
         };
-    });
 
+        markerCells.forEach(cell => {
+            cell.addEventListener("click", clickHandlerBoard);
+        });
 
-})();
+        updateMarkerCells();
+    })();
