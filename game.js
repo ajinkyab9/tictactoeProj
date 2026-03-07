@@ -111,4 +111,22 @@ const gameController = (function () {
         playRound
     }
 
+    //Control the game grid
+    const screenController = (function() {
+        const markerCells = document.querySelectorAll('.cell');
+
+        const updateMarkerCells = () => {
+            const board = gameBoard.getBoard();
+        };
+
+        const clickHandlerBoard = (e) => {
+            const selectedIndex = e.target.dataset.index;
+
+            if (!selectedIndex) return;
+
+            updateScreen();
+        };
+    });
+
+
 })();
