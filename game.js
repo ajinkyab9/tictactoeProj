@@ -1,10 +1,32 @@
 //Game Board IIFE below
-const gameBoard = (function() {
+const resetBoard = document.getElementsByClassName("resetBtn");
+for (let i = 0; i < resetBoard.length; i++) {
+    resetBoard[i].addEventListener("click", function () {
+        window.location.reload();
+    });
+}
+
+const playButton = document.querySelector(".playBtn");
+playButton.addEventListener("click", function () {
+    const playerOne = document.querySelector(".playerOne").value;
+    const markerOne = document.querySelector(".markerOne").value;
+    const playerTwo = document.querySelector(".playerTwo").value;
+    const markerTwo = document.querySelector(".markerTwo").value;
+
+    if(playerOne === "" || markerOne === "" || playerTwo === "" || markerTwo === "") {
+        alert("Please enter player details before playing!");
+        return;
+    }
+
+    gameController.startGame(playerOne,markerOne, playerTwo, markerTwo)    
+});
+
+const gameBoard = (function () {
     const markerSlots = Array(9).fill("");
 
     const getBoard = () => markerSlots;
 
-    const dropMarker = (index, marker) => {
+    const dropMarker = (index, marker) => {  
         if (markerSlots[index] === "") {
             markerSlots[index] = marker;
             return true;
@@ -17,7 +39,7 @@ const gameBoard = (function() {
     return {
         getBoard,
         dropMarker
-     };
+    };
 
 
 })();
@@ -30,12 +52,21 @@ const createPlayer = (name, marker) => {
 //Game Controller IIFE below
 const gameController = (function () {
 
-    const players = [
-    createPlayer("Player One", "X"),
-    createPlayer("Player Two", "O")
-    ];
+    let isGameOver = true;
+    let players = [];
+    let activePlayer;
 
-    let activePlayer = players[0];
+    const startGame = (p1Name, p1Marker, p2Name, p2Marker) => {
+
+        players = [
+            createPlayer(p1Name, p1Marker),
+            createPlayer(p2Name, p2Marker)
+        ];
+        activePlayer = players[0];
+        isGameOver = false;
+        console.log(`Game Started! ${activePlayer.name}'s turn.`);
+    } 
+    
 
     const switchPlayerTurn = () => {
         if (activePlayer === players[0]) {
@@ -49,45 +80,54 @@ const gameController = (function () {
 
     //check win
     const checkWin = (index) => {
-         const board = gameBoard.getBoard();
-            
-         const checkRowMarkerPos = Math.floor(index / 3);//for getting a round off down to the nearest integer
-         const checkColMarkerPos = index % 3;//for getting a round off down to the nearest integer
-         //Check the row
-         const rowStart = checkRowMarkerPos * 3;
+        const board = gameBoard.getBoard();
 
-         if(board[rowStart] !== "" && 
-            board[rowStart] === board[rowStart + 1] && 
-            board[rowStart + 1] === board[rowStart + 2]){
+        const checkRowMarkerPos = Math.floor(index / 3);//for getting a round off down to the nearest integer
+        const checkColMarkerPos = index % 3;//for getting a round off down to the nearest integer
+        //Check the row
+        const rowStart = checkRowMarkerPos * 3;
+
+        if (board[rowStart] !== "" &&
+            board[rowStart] === board[rowStart + 1] &&
+            board[rowStart + 1] === board[rowStart + 2]) {
             return true;
-         } else if (board[checkColMarkerPos] !== "" && 
-            board[checkColMarkerPos] === board[checkColMarkerPos + 3] && 
-            board[checkColMarkerPos + 3] === board[checkColMarkerPos + 6]){
+        } else if (board[checkColMarkerPos] !== "" &&
+            board[checkColMarkerPos] === board[checkColMarkerPos + 3] &&
+            board[checkColMarkerPos + 3] === board[checkColMarkerPos + 6]) {
             return true;
-         } else if (board[0] !== "" &&
+        } else if (board[0] !== "" &&
             board[0] === board[4] &&
-            board[4] === board[8]){
+            board[4] === board[8]) {
             return true;
-         } else if (board[2] !== "" && 
+        } else if (board[2] !== "" &&
             board[2] === board[4] &&
             board[4] === board[6]) {
-                return true;
-            } 
-         return false;
+            return true;
         }
+        return false;
+    }
 
-        //check the column
+    //check the column
 
     //check win
 
     const playRound = (index) => {
+
+        if (isGameOver) return;
+
         const currentPlayer = getActivePlayer();
         const validMove = gameBoard.dropMarker(index, currentPlayer.marker);
 
         if (validMove) {
-            if(checkWin(index)) {
+            if (checkWin(index)) {
                 console.log(`${currentPlayer.name} Wins!`);
                 console.log(gameBoard.getBoard());
+
+                const disableCell = document.querySelectorAll(".cell");
+                disableCell.forEach(cell => {
+                    cell.classList.add("disable");
+                });
+                isGameOver = true;
                 return
             }
 
@@ -106,41 +146,37 @@ const gameController = (function () {
     };
 
     return {
+        startGame,
         switchPlayerTurn,
         getActivePlayer,
         playRound
     }
-
-
-
 })();
 
-    //Control the game grid
-    const screenController = (function() {
-        const markerCells = document.querySelectorAll('.cell');
+//Control the game grid
+const screenController = (function () {
+    const markerCells = document.querySelectorAll('.cell');
 
-        const updateMarkerCells = () => {
-            const board = gameBoard.getBoard();
+    const updateMarkerCells = () => {
+        const board = gameBoard.getBoard();
 
-            markerCells.forEach((cell, index) => {
-                cell.textContent = board[index];
-            });
-        };
-
-        const clickHandlerBoard = (e) => {
-            const selectedIndex = e.target.dataset.index;
-
-            if (!selectedIndex) return;
-
-            gameController.playRound(selectedIndex);
-            updateMarkerCells();
-
-  
-        };
-
-        markerCells.forEach(cell => {
-            cell.addEventListener("click", clickHandlerBoard);
+        markerCells.forEach((cell, index) => {
+            cell.textContent = board[index];
         });
+    };
 
+    const clickHandlerBoard = (e) => {
+        const selectedIndex = e.target.dataset.index;
+
+        if (!selectedIndex) return;
+
+        gameController.playRound(selectedIndex);
         updateMarkerCells();
-    })();
+
+
+    };
+    markerCells.forEach(cell => {
+        cell.addEventListener("click", clickHandlerBoard);
+    });
+    updateMarkerCells();
+})();
