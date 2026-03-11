@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>Tic Tac Toe</title>
 </head>
 
@@ -17,11 +20,11 @@
     <div class="mainGameBody">
         <div class="detailCard playerOneDetails">
             <label for="nameOne">Player One Name</label>
-            <input type="text" name="nameOne" id="nameOne" maxlength="1" required>
+            <input class="inputStl playerOne" name="nameOne" id="nameOne" required>
             <label for="playerOneMarker">Enter your marker (eg. X)</label>
-            <input type="text" name="playerOneMarker" id="playerOneMarker" maxlength="1" required>
+            <input class="inputStl markerOne" name="playerOneMarker" id="playerOneMarker" maxlength="1" required>
         </div>
-        <div class="mainGameGrid">
+        <div class="mainGameGrid hiddenBoard">
             <div class="cell" data-index="0"></div>
             <div class="cell" data-index="1"></div>
             <div class="cell" data-index="2"></div>
@@ -34,9 +37,9 @@
         </div>
         <div class="detailCard playerTwoDetails">
             <label for="nameTwo">Player Two Name</label>
-            <input type="text" name="nameTwo" id="nameTwo" maxlength="1" required>
+            <input class="inputStl playerTwo" name="nameTwo" id="nameTwo" required>
             <label for="playerTwoMarker">Enter your marker (eg. O)</label>
-            <input type="text" name="playerTwoMarker" id="playerTwoMarker" maxlength="1" required>
+            <input class="inputStl markerTwo" name="playerTwoMarker" id="playerTwoMarker" maxlength="1" required>
         </div>
     </div>
     <script src="game.js"></script>
