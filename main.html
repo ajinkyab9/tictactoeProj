@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <title>Tic Tac Toe</title>
 </head>
 
@@ -18,11 +19,15 @@
         <div class="playResetBtn resetBtn">Reset</div>
     </nav>
     <div class="mainGameBody">
-        <div class="detailCard playerOneDetails">
-            <label for="nameOne">Player One Name</label>
+        <div class="detailCard playerOneDetails showDetailInput">
+            <!-- <label for="nameOne">Player One Name</label>
             <input class="inputStl playerOne" name="nameOne" id="nameOne" required>
             <label for="playerOneMarker">Enter your marker (eg. X)</label>
-            <input class="inputStl markerOne" name="playerOneMarker" id="playerOneMarker" maxlength="1" required>
+            <input class="inputStl markerOne" name="playerOneMarker" id="playerOneMarker" maxlength="1" required> -->
+            <div class="scoreCardP1 hiddenScoreCard">
+                <p class="p1Name">Name</p>
+                <p class="p1Score">Score</p>
+            </div>
         </div>
         <div class="mainGameGrid hiddenBoard">
             <div class="cell" data-index="0"></div>
@@ -35,11 +40,15 @@
             <div class="cell" data-index="7"></div>
             <div class="cell" data-index="8"></div>
         </div>
-        <div class="detailCard playerTwoDetails">
-            <label for="nameTwo">Player Two Name</label>
+        <div class="detailCard playerTwoDetails showDetailInput">
+            <!-- <label for="nameTwo">Player Two Name</label>
             <input class="inputStl playerTwo" name="nameTwo" id="nameTwo" required>
             <label for="playerTwoMarker">Enter your marker (eg. O)</label>
-            <input class="inputStl markerTwo" name="playerTwoMarker" id="playerTwoMarker" maxlength="1" required>
+            <input class="inputStl markerTwo" name="playerTwoMarker" id="playerTwoMarker" maxlength="1" required> -->
+            <div class="scoreCardP2 hiddenScoreCard">
+                <p class="p2Name">Name</p>
+                <p class="p2Score">Score</p>
+            </div>
         </div>
     </div>
     <script src="game.js"></script>
