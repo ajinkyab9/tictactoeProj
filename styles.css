@@ -131,3 +131,29 @@
 .showBoard {
     display: grid;
 }
+
+.showDetailInput {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.hideDetailInput {
+    display: none;
+}
+
+.scoreCardCmm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.hiddenScoreCard {
+    display: none;
+}
+
+.showScoreCard {
+    display: flex;
+}
