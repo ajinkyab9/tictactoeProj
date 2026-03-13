@@ -35,10 +35,6 @@ playButton.addEventListener("click", function () {
         scoreCard.classList.add("showScoreCard");
     });
 
-
-
-
-
     gameController.startGame(playerOne, markerOne, playerTwo, markerTwo)
 });
 
@@ -62,7 +58,6 @@ const gameBoard = (function () {
         dropMarker
     };
 
-
 })();
 //IIFE End
 
@@ -85,9 +80,14 @@ const gameController = (function () {
         ];
         activePlayer = players[0];
         isGameOver = false;
+
+        const displayP1Name = players[0].name;
+        const displayP2Name = players[1].name;
+
+        document.getElementById("p1Name").innerText = displayP1Name;
+        document.getElementById("p2Name").innerText = displayP2Name;
         console.log(`Game Started! ${activePlayer.name}'s turn.`);
     }
-
 
     const switchPlayerTurn = () => {
         if (activePlayer === players[0]) {
@@ -162,7 +162,6 @@ const gameController = (function () {
             switchPlayerTurn();
         }
 
-
         console.log(gameBoard.getBoard());
     };
 
@@ -193,7 +192,6 @@ const screenController = (function () {
 
         gameController.playRound(selectedIndex);
         updateMarkerCells();
-
 
     };
     markerCells.forEach(cell => {
