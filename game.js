@@ -13,12 +13,33 @@ playButton.addEventListener("click", function () {
     const playerTwo = document.querySelector(".playerTwo").value;
     const markerTwo = document.querySelector(".markerTwo").value;
 
-    if(playerOne === "" || markerOne === "" || playerTwo === "" || markerTwo === "") {
+    if (playerOne === "" || markerOne === "" || playerTwo === "" || markerTwo === "") {
         alert("Please enter player details before playing!");
         return;
     }
+    let enableBoard = document.querySelector(".mainGameGrid");
+    enableBoard.classList.remove("hiddenBoard");
+    enableBoard.classList.add("showBoard");
 
-    gameController.startGame(playerOne,markerOne, playerTwo, markerTwo)    
+    let disableDetailCard = document.querySelectorAll(".inputGroup");
+
+    disableDetailCard.forEach((card) => {
+        card.classList.remove("showDetailInput");
+        card.classList.add("hideDetailInput");
+    });
+
+    let enableScoreCard = document.querySelectorAll(".scoreCardCmm");
+
+    enableScoreCard.forEach((scoreCard) => {
+        scoreCard.classList.remove("hiddenScoreCard");
+        scoreCard.classList.add("showScoreCard");
+    });
+
+
+
+
+
+    gameController.startGame(playerOne, markerOne, playerTwo, markerTwo)
 });
 
 const gameBoard = (function () {
@@ -26,7 +47,7 @@ const gameBoard = (function () {
 
     const getBoard = () => markerSlots;
 
-    const dropMarker = (index, marker) => {  
+    const dropMarker = (index, marker) => {
         if (markerSlots[index] === "") {
             markerSlots[index] = marker;
             return true;
@@ -65,8 +86,8 @@ const gameController = (function () {
         activePlayer = players[0];
         isGameOver = false;
         console.log(`Game Started! ${activePlayer.name}'s turn.`);
-    } 
-    
+    }
+
 
     const switchPlayerTurn = () => {
         if (activePlayer === players[0]) {
