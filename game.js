@@ -6,6 +6,8 @@ for (let i = 0; i < resetBoard.length; i++) {
     });
 }
 
+
+
 const playButton = document.querySelector(".playBtn");
 playButton.addEventListener("click", function () {
     const playerOne = document.querySelector(".playerOne").value;
@@ -17,9 +19,19 @@ playButton.addEventListener("click", function () {
         alert("Please enter player details before playing!");
         return;
     }
+
+    let enablePlayBtn = document.querySelector(".playBtn");
+    enablePlayBtn.classList.remove("showPlayBtn");
+    enablePlayBtn.classList.add("hidePlayBtn");
+
+
     let enableBoard = document.querySelector(".mainGameGrid");
     enableBoard.classList.remove("hiddenBoard");
     enableBoard.classList.add("showBoard");
+
+    let enablePlayAgain = document.querySelector(".playAgainBtn");
+    enablePlayAgain.classList.remove("hidePlayAgain");
+    enablePlayAgain.classList.add("showPlayAgain");
 
     let disableDetailCard = document.querySelectorAll(".inputGroup");
 
@@ -62,7 +74,16 @@ const gameBoard = (function () {
 //IIFE End
 
 const createPlayer = (name, marker) => {
-    return { name, marker };
+
+    let score = 0;
+
+    const addScore = () => {
+        score++
+    }
+
+    const getScore = () => score;
+
+    return { name, marker, addScore, getScore };
 }
 
 //Game Controller IIFE below
@@ -141,6 +162,15 @@ const gameController = (function () {
 
         if (validMove) {
             if (checkWin(index)) {
+
+                currentPlayer.addScore();
+
+                if (currentPlayer === players[0]) {
+                    document.getElementById("p1Score").innerText = currentPlayer.getScore();
+                } else {
+                    document.getElementById("p2Score").innerText = currentPlayer.getScore()
+                }
+
                 console.log(`${currentPlayer.name} Wins!`);
                 console.log(gameBoard.getBoard());
 
