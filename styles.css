@@ -157,3 +157,13 @@
 .showScoreCard {
     display: flex;
 }
+
+.hidePlayAgain,
+.hidePlayBtn {
+    display: none;
+}
+
+.showPlayAgain,
+.showPlayBtn {
+    display: flex;
+}
