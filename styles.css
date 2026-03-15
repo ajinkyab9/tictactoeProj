@@ -184,7 +184,8 @@
     transition: 0.15s ease;
 }
 
-.scoreCardLables {
+.scoreCardLables,
+.scoreLable {
     padding: 1rem;
     background-color: cornsilk;
     border-radius: 1rem;
