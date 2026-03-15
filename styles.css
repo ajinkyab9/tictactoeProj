@@ -93,6 +93,10 @@
     background-color: rgb(243, 245, 166);
     transition: background-color 0.25s ease;
     border-radius: 1rem;
+    color: burlywood;
+    font-size: 5.5rem;
+    display: grid;
+    place-items: center;
 }
 
 .cell:hover {
@@ -166,4 +170,27 @@
 .showPlayAgain,
 .showPlayBtn {
     display: flex;
+}
+
+.winAni {
+    color: white;
+    background-color: rgb(166, 182, 92);
+    box-shadow:
+        0 0 5px rgba(166, 182, 92, 0.5),
+        0 0 15px rgba(166, 182, 92, 0.7),
+        0 0 30px rgba(166, 182, 92, 0.4);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    transform: translateY(4px);
+    transition: 0.15s ease;
+}
+
+.scoreCardLables {
+    padding: 1rem;
+    background-color: cornsilk;
+    border-radius: 1rem;
+}
+
+.scoreCont {
+    display: flex;
+    gap: 1rem;
 }

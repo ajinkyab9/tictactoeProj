@@ -6,7 +6,8 @@ for (let i = 0; i < resetBoard.length; i++) {
     });
 }
 
-
+let variableNavTitle = document.querySelector("#navTitle");
+variableNavTitle.innerText = "TIC TAC TOE";
 
 const playButton = document.querySelector(".playBtn");
 playButton.addEventListener("click", function () {
@@ -51,6 +52,7 @@ playButton.addEventListener("click", function () {
 });
 
 const gameBoard = (function () {
+
     const markerSlots = Array(9).fill("");
 
     const getBoard = () => markerSlots;
@@ -65,9 +67,15 @@ const gameBoard = (function () {
         }
     };
 
+    const clearBoard = () => {
+        //empties the original array so that players can play again
+        markerSlots.fill("");
+    }
+
     return {
         getBoard,
-        dropMarker
+        dropMarker,
+        clearBoard
     };
 
 })();
@@ -171,7 +179,12 @@ const gameController = (function () {
                     document.getElementById("p2Score").innerText = currentPlayer.getScore()
                 }
 
+
                 console.log(`${currentPlayer.name} Wins!`);
+                variableNavTitle.innerText = `${currentPlayer.name} Wins!`;
+
+                const addWinAnimation = document.getElementById("navTitle");
+                addWinAnimation.classList.add("winAni");
                 console.log(gameBoard.getBoard());
 
                 const disableCell = document.querySelectorAll(".cell");
@@ -184,6 +197,7 @@ const gameController = (function () {
 
             const currentBoard = gameBoard.getBoard();
             if (!currentBoard.includes("")) {
+                variableNavTitle.innerText = "Draw!"
                 console.log("It's a Draw!");
                 console.log(gameBoard.getBoard());
                 return;
@@ -195,16 +209,26 @@ const gameController = (function () {
         console.log(gameBoard.getBoard());
     };
 
+    const playNextRound = () => {
+        gameBoard.clearBoard();
+        isGameOver = false;
+        activePlayer = players[0];
+    }
+
     return {
         startGame,
         switchPlayerTurn,
         getActivePlayer,
-        playRound
+        playRound,
+        playNextRound
     }
 })();
 
 //Control the game grid
 const screenController = (function () {
+
+    const playAgainBtn = document.querySelector(".playAgainBtn");
+
     const markerCells = document.querySelectorAll('.cell');
 
     const updateMarkerCells = () => {
@@ -228,4 +252,29 @@ const screenController = (function () {
         cell.addEventListener("click", clickHandlerBoard);
     });
     updateMarkerCells();
+
+    playAgainBtn.addEventListener("click", () => {
+        gameController.playNextRound();
+
+        variableNavTitle.innerText = "TIC TAC TOE";
+
+        const addWinAnimation = document.getElementById("navTitle");
+        addWinAnimation.classList.remove("winAni");
+
+        markerCells.forEach((cell) => {
+            cell.textContent = "";
+        })
+
+        markerCells.forEach(cell => {
+            cell.classList.remove("disable");
+        })
+
+    });
+
+    updateMarkerCells();
+
+    markerCells.forEach(cell => {
+        cell.classList.remove("disable");
+    })
+
 })();

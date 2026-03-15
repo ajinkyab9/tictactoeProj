@@ -16,7 +16,7 @@
     <nav class="mainNav">
         <div class="playResetBtn playBtn showPlayBtn">Play</div>
         <div class="playResetBtn playAgainBtn hidePlayAgain">Play Again</div>
-        <div class="navTitle">TIC TAC TOE</div>
+        <div class="navTitle" id="navTitle"></div>
         <div class="playResetBtn resetBtn">Reset</div>
     </nav>
     <div class="mainGameBody">
@@ -28,8 +28,10 @@
                 <input class="inputStl markerOne" name="playerOneMarker" id="playerOneMarker" maxlength="1" required>
             </div>
             <div class="scoreCardCmm scoreCardP1 hiddenScoreCard">
-                <p><span id="p1Name">Name</span></p>
-                <p><span id="p1Score">Score</span></p>
+                <p><span class="scoreCardLables" id="p1Name">Name</span></p>
+                <p class="scoreCont"><span class="scoreCardLables">Score</span>
+                    <span class="scoreCardLables" id="p1Score"></span>
+                </p>
             </div>
         </div>
         <div class="mainGameGrid hiddenBoard">
@@ -51,8 +53,10 @@
                 <input class="inputStl markerTwo" name="playerTwoMarker" id="playerTwoMarker" maxlength="1" required>
             </div>
             <div class="scoreCardCmm scoreCardP2 hiddenScoreCard">
-                <p><span id="p2Name">Name</span></p>
-                <p><span id="p2Score">Score</span></p>
+                <p><span class="scoreCardLables" id="p2Name">Name</span></p>
+                <p class="scoreCont"><span class="scoreCardLables">Score</span>
+                    <span class="scoreCardLables" id="p2Score"></span>
+                </p>
             </div>
         </div>
     </div>
