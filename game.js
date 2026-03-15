@@ -183,6 +183,11 @@ const gameController = (function () {
                 console.log(`${currentPlayer.name} Wins!`);
                 variableNavTitle.innerText = `${currentPlayer.name} Wins!`;
 
+                let displayScore = document.querySelectorAll(".scoreLableHide");
+                displayScore.forEach(newScore => {
+                    newScore.classList.add("scoreLable");
+                })
+
                 const addWinAnimation = document.getElementById("navTitle");
                 addWinAnimation.classList.add("winAni");
                 console.log(gameBoard.getBoard());
